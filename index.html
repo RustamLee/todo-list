@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple and responsive task management application.">
+    <title>Task Tracker — To-Do List</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header__container">
+
+            <a href="#" class="logo">Task Tracker</a>
+
+            <nav class="filters" aria-label="Task filters">
+                <button class="filter-btn filter-btn--active"
+                        data-filter="all"
+                        type="button">
+                    All <span class="filter-count">0</span>
+                </button>
+
+                <button class="filter-btn"
+                        data-filter="active"
+                        type="button">
+                    Active <span class="filter-count">0</span>
+                </button>
+
+                <button class="filter-btn"
+                        data-filter="completed"
+                        type="button">
+                    Completed <span class="filter-count">0</span>
+                </button>
+            </nav>
+
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container main__container">
+
+            <section class="task-section" aria-labelledby="tasks-title">
+
+                <h1 id="tasks-title">My Tasks</h1>
+
+                <div class="search">
+                    <label for="task-search" class="visually-hidden">
+                        Search tasks
+                    </label>
+                    <input
+                        type="search"
+                        id="task-search"
+                        placeholder="Search tasks..."
+                    >
+                </div>
+
+                <form class="task-form" id="task-form">
+
+                    <label for="task-title" class="visually-hidden">
+                        New task title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="task-title"
+                        name="title"
+                        placeholder="What needs to be done?"
+                        required
+                        maxlength="200"
+                    >
+
+                    <div class="task-form__actions">
+
+                        <label for="task-due-date" class="due-date">
+                            <span>Set due date</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="task-due-date"
+                            name="dueDate"
+                        >
+
+                        <button type="submit" class="add-task-btn">
+                            Add Task
+                        </button>
+
+                    </div>
+
+                </form>
+
+                <section class="task-list-section"
+                         aria-labelledby="task-list-title">
+
+                    <h2 id="task-list-title">Tasks</h2>
+
+                    <ul class="task-list" id="task-list">
+                        <!-- Tasks will be rendered here by JavaScript -->
+                    </ul>
+
+                    <p class="empty-state" id="empty-state">
+                        No tasks yet. Add your first task!
+                    </p>
+
+                </section>
+
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__container">
+
+            <p>&copy; 2026 TaskFlow. All rights reserved.</p>
+
+            <a href="https://github.com/"
+               target="_blank"
+               rel="noopener noreferrer">
+                GitHub
+            </a>
+
+        </div>
+    </footer>
+
+</body>
+</html>
