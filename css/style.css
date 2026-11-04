@@ -403,6 +403,7 @@ a {
   width: 130px;
   text-align: left;
   white-space: nowrap;
+  gap: 5px;
   padding: 6px 8px;
   border: none;
   border-radius: var(--radius-sm);
@@ -423,6 +424,15 @@ a {
 
 .task-due-date--overdue {
   color: var(--color-danger);
+}
+
+.task-due-date span {
+  display: flex;
+  align-items: center;
+}
+
+.task-due-date svg {
+  display: block;
 }
 
 /* ==============================
@@ -575,6 +585,15 @@ input:focus-visible {
   .task-due-date {
     width: auto;
     margin-right: auto;
+  }
+}
+
+/* Prevent iOS Safari from zooming into inputs on focus */
+@media (pointer: coarse) {
+  .search input,
+  .task-form > input[type="text"],
+  .task-form input[type="date"] {
+    font-size: 16px;
   }
 }
 
