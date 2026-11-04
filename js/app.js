@@ -107,6 +107,14 @@ function showEditLimitError() {
   );
 }
 
+function openEditDialog(task, focusField = editTaskTitle) {
+  editingTaskId = task.id;
+  editTaskTitle.value = task.title;
+  editDueDate.value = task.dueDate || "";
+  editDialog.showModal();
+  focusField.focus();
+}
+
 let tasks = [];
 let currentFilter = "all";
 let searchQuery = "";
@@ -246,10 +254,7 @@ function renderTasks() {
     dueDate.append(dueDateLabel, dueDateValue);
 
     dueDate.addEventListener("click", function () {
-      editingTaskId = task.id;
-      editTaskTitle.value = task.title;
-      editDueDate.value = task.dueDate || "";
-      editDialog.showModal();
+      openEditDialog(task, editDueDate);
     });
 
     const actions = document.createElement("div");
@@ -260,13 +265,9 @@ function renderTasks() {
     editButton.type = "button";
     editButton.className = "task-action-btn";
     editButton.addEventListener("click", function () {
-      editingTaskId = task.id;
-
-      editTaskTitle.value = task.title;
-      editDueDate.value = task.dueDate || "";
-
-      editDialog.showModal();
+      openEditDialog(task);
     });
+
     editButton.innerHTML = `
     <svg xmlns="http://www.w3.org/2000/svg"
          width="18" height="18" viewBox="0 0 24 24"
