@@ -18,20 +18,15 @@ const confirmDeleteButton = document.getElementById("confirm-delete");
 const taskError = document.getElementById("task-error");
 const editError = document.getElementById("edit-error");
 const saveEditButton = document.getElementById("save-edit");
-
-let editLimitHit = false;
-
 const MAX_TITLE_LENGTH = 100;
+
 let limitHit = false;
 
 let deletingTaskId = null;
 
 let editingTaskId = null;
 
-searchInput.addEventListener("input", function () {
-  searchQuery = searchInput.value.trim();
-  renderTasks();
-});
+let editLimitHit = false;
 
 // Switch the active filter
 function setActiveFilter(filter) {
@@ -61,6 +56,13 @@ function getTodayDate() {
 
   return `${year}-${month}-${day}`;
 }
+
+function isOverdue(task) {
+  return Boolean(
+    task.dueDate && task.dueDate < getTodayDate() && !task.completed,
+  );
+}
+
 function showTaskError(message, field, { blockSubmit = true } = {}) {
   taskError.textContent = message;
   field.setAttribute("aria-invalid", "true");
@@ -184,7 +186,15 @@ function renderTasks() {
     checkbox.addEventListener("change", function () {
       task.completed = checkbox.checked;
       saveTasks();
-      renderTasks();
+
+      if (currentFilter === "all") {
+        title.classList.toggle("task-item__title--completed", task.completed);
+        dueDate.classList.toggle("task-due-date--overdue", isOverdue(task));
+        updateFilterCounts();
+      } else {
+        // On Active/Completed the card must leave the list
+        renderTasks();
+      }
     });
 
     const title = document.createElement("span");
@@ -200,6 +210,10 @@ function renderTasks() {
     const dueDate = document.createElement("button");
     dueDate.type = "button";
     dueDate.className = "task-due-date";
+
+    if (isOverdue(task)) {
+      dueDate.classList.add("task-due-date--overdue");
+    }
 
     const dueDateLabel = document.createElement("span");
     const dueDateValue = document.createElement("span");
@@ -482,6 +496,11 @@ deleteDialog.addEventListener("click", function (event) {
   if (event.target === deleteDialog) {
     deleteDialog.close();
   }
+});
+
+searchInput.addEventListener("input", function () {
+  searchQuery = searchInput.value.trim();
+  renderTasks();
 });
 
 // Initialize application

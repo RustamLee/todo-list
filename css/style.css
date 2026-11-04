@@ -8,7 +8,7 @@
   --color-background: #f5f6fa;
   --color-surface: #ffffff;
   --color-text: #202438;
-  --color-secondary: #858b9c;
+  --color-secondary:#6b7285;
   --color-border: #e8eaf0;
   --color-danger: #e05252;
 
@@ -27,6 +27,7 @@
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   font-family:
@@ -66,6 +67,9 @@ a {
 .header {
   background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .header__container {
@@ -385,18 +389,40 @@ a {
   overflow-wrap: anywhere;
 }
 
-.task-item__date {
-  margin-left: auto;
-  color: var(--color-secondary);
-  font-size: 13px;
-  white-space: nowrap;
-}
-
 .empty-state {
   padding: 32px 16px;
   color: var(--color-secondary);
   font-size: 14px;
   text-align: center;
+}
+
+.task-due-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 130px;
+  text-align: left;
+  white-space: nowrap;
+  padding: 6px 8px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-secondary);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.task-due-date:hover {
+  color: var(--color-primary);
+  background: var(--color-background);
+}
+
+.task-due-date--overdue {
+  color: var(--color-danger);
 }
 
 /* ==============================
@@ -525,33 +551,35 @@ input:focus-visible {
   }
 }
 
-.task-due-date {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 130px;
-  text-align: left;
-  white-space: nowrap;
-  padding: 6px 8px;
-  border: none;
-  border-radius: var(--radius-sm);
-  background: transparent;
-  color: var(--color-secondary);
-  font: inherit;
-  font-size: 13px;
-  cursor: pointer;
-  transition:
-    color 0.2s ease,
-    background 0.2s ease;
-}
+@media (max-width: 480px) {
+  .task-item {
+    flex-wrap: wrap;
+    row-gap: 8px;
+    padding: 14px 16px;
+  }
 
-.task-due-date:hover {
-  color: var(--color-primary);
-  background: var(--color-background);
+  /* Title takes the rest of the first row */
+  .task-item > span {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Date and icons go to the second row */
+  .task-item__actions {
+    flex-basis: 100%;
+    margin-left: 0;
+    padding-left: 32px; /* checkbox 18px + gap 14px, aligns with title */
+    justify-content: space-between;
+  }
+
+  .task-due-date {
+    width: auto;
+    margin-right: auto;
+  }
 }
 
 /* ==============================
-   9. Edit dialog
+   10. Edit dialog
 ================================= */
 
 .edit-dialog {
@@ -625,9 +653,18 @@ input:focus-visible {
   cursor: pointer;
 }
 
+.edit-form__actions button[type="submit"]:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
 #cancel-edit {
-  background: var(--color-surface-blue);
+  background: var(--color-background);
   color: var(--color-text);
+}
+
+#cancel-edit:hover,
+#cancel-delete:hover {
+  background: var(--color-border);
 }
 
 .edit-form__actions button[type="submit"] {
@@ -635,8 +672,10 @@ input:focus-visible {
   color: white;
 }
 
+
+
 /* ==============================
-   10. Delete dialog buttons
+   11. Delete dialog buttons
 ================================= */
 
 #cancel-delete {
