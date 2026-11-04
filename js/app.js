@@ -16,6 +16,10 @@ const deleteDialog = document.getElementById("delete-dialog");
 const cancelDeleteButton = document.getElementById("cancel-delete");
 const confirmDeleteButton = document.getElementById("confirm-delete");
 const taskError = document.getElementById("task-error");
+const editError = document.getElementById("edit-error");
+const saveEditButton = document.getElementById("save-edit");
+
+let editLimitHit = false;
 
 const MAX_TITLE_LENGTH = 100;
 let limitHit = false;
@@ -53,6 +57,28 @@ function showLimitError() {
   showTaskError(
     `Task name cannot exceed ${MAX_TITLE_LENGTH} characters.`,
     taskInput,
+    { blockSubmit: false },
+  );
+}
+
+function showEditError(message, field, { blockSubmit = true } = {}) {
+  editError.textContent = message;
+  field.setAttribute("aria-invalid", "true");
+  saveEditButton.disabled = blockSubmit;
+  field.focus();
+}
+
+function clearEditError() {
+  editError.textContent = "";
+  editTaskTitle.removeAttribute("aria-invalid");
+  editDueDate.removeAttribute("aria-invalid");
+  saveEditButton.disabled = false;
+}
+
+function showEditLimitError() {
+  showEditError(
+    `Task name cannot exceed ${MAX_TITLE_LENGTH} characters.`,
+    editTaskTitle,
     { blockSubmit: false },
   );
 }
@@ -304,6 +330,7 @@ dueDateInput.addEventListener("input", clearTaskError);
 // Save edited task
 editForm.addEventListener("submit", function (event) {
   event.preventDefault();
+  clearEditError();
 
   const task = tasks.find((item) => item.id === editingTaskId);
 
@@ -311,30 +338,64 @@ editForm.addEventListener("submit", function (event) {
 
   const title = editTaskTitle.value.trim();
 
-  if (title.length < 3) {
-    editTaskTitle.setCustomValidity(
-      "Task name must contain at least 3 characters.",
-    );
-    editTaskTitle.reportValidity();
+  if (title === "") {
+    showEditError("Please enter a task name.", editTaskTitle);
     return;
   }
 
-  editTaskTitle.setCustomValidity("");
-  task.title = title;
+  if (title.length < 3) {
+    showEditError(
+      "Task name must contain at least 3 characters.",
+      editTaskTitle,
+    );
+    return;
+  }
 
-  task.dueDate = editDueDate.value || null;
+  const newDate = editDueDate.value || null;
+  // Only reject a past date if the user actually changed it
+  if (newDate && newDate !== task.dueDate && newDate < getTodayDate()) {
+    showEditError("Due date cannot be in the past.", editDueDate);
+    return;
+  }
+
+  task.title = title;
+  task.dueDate = newDate;
 
   saveTasks();
   renderTasks();
 
   editDialog.close();
-  editingTaskId = null;
+});
+// Warn when the user tries to type or paste beyond the limit
+editTaskTitle.addEventListener("beforeinput", function (event) {
+  editLimitHit = false;
+
+  if (!event.inputType.startsWith("insert")) return;
+
+  const selectedLength =
+    editTaskTitle.selectionEnd - editTaskTitle.selectionStart;
+  const incoming = event.data ?? event.dataTransfer?.getData("text") ?? "";
+  const newLength =
+    editTaskTitle.value.length - selectedLength + incoming.length;
+
+  if (newLength > MAX_TITLE_LENGTH) {
+    editLimitHit = true;
+    showEditLimitError();
+  }
 });
 
 editTaskTitle.addEventListener("input", function () {
-  editTaskTitle.setCustomValidity("");
-  editTaskTitle.reportValidity();
+  const keepLimitError = editLimitHit;
+  editLimitHit = false;
+
+  clearEditError();
+
+  if (keepLimitError) {
+    showEditLimitError();
+  }
 });
+
+editDueDate.addEventListener("input", clearEditError);
 
 // Cancel editing
 cancelEditButton.addEventListener("click", function () {
@@ -343,6 +404,8 @@ cancelEditButton.addEventListener("click", function () {
 });
 editDialog.addEventListener("close", function () {
   editingTaskId = null;
+  editLimitHit = false;
+  clearEditError();
 });
 
 // Cancel deletion

@@ -113,18 +113,24 @@
       </div>
 
       <dialog class="edit-dialog" id="edit-dialog">
-        <form class="edit-form" id="edit-form">
+        <form class="edit-form" id="edit-form" novalidate>
           <h2>Edit task</h2>
 
           <label for="edit-task-title">Task name</label>
-          <input type="text" id="edit-task-title" maxlength="100" required />
+          <input
+            type="text"
+            id="edit-task-title"
+            maxlength="100"
+            aria-describedby="edit-error"
+          />
+          <p class="form-error" id="edit-error" role="alert"></p>
 
           <label for="edit-due-date">Due date</label>
           <input type="date" id="edit-due-date" />
 
           <div class="edit-form__actions">
             <button type="button" id="cancel-edit">Cancel</button>
-            <button type="submit">Save changes</button>
+            <button type="submit" id="save-edit">Save changes</button>
           </div>
         </form>
       </dialog>
