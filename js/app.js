@@ -67,7 +67,7 @@ function showTaskError(message, field, { blockSubmit = true } = {}) {
   taskError.textContent = message;
   field.setAttribute("aria-invalid", "true");
   addTaskButton.disabled = blockSubmit;
-  field.focus();
+  if (field.type !== "date") field.focus();
 }
 
 function clearTaskError() {
@@ -89,7 +89,7 @@ function showEditError(message, field, { blockSubmit = true } = {}) {
   editError.textContent = message;
   field.setAttribute("aria-invalid", "true");
   saveEditButton.disabled = blockSubmit;
-  field.focus();
+  if (field.type !== "date") field.focus();
 }
 
 function clearEditError() {
@@ -381,6 +381,13 @@ taskInput.addEventListener("input", function () {
 });
 
 dueDateInput.addEventListener("input", clearTaskError);
+dueDateInput.addEventListener("change", function () {
+  clearTaskError();
+
+  if (dueDateInput.value && dueDateInput.value < getTodayDate()) {
+    showTaskError("Due date cannot be in the past.", dueDateInput);
+  }
+});
 
 // Save edited task
 editForm.addEventListener("submit", function (event) {
@@ -451,6 +458,16 @@ editTaskTitle.addEventListener("input", function () {
 });
 
 editDueDate.addEventListener("input", clearEditError);
+editDueDate.addEventListener("change", function () {
+  clearEditError();
+
+  const task = tasks.find((item) => item.id === editingTaskId);
+  const newDate = editDueDate.value || null;
+
+  if (task && newDate && newDate !== task.dueDate && newDate < getTodayDate()) {
+    showEditError("Due date cannot be in the past.", editDueDate);
+  }
+});
 
 // Cancel editing
 cancelEditButton.addEventListener("click", function () {
