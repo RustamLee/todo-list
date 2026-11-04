@@ -28,7 +28,29 @@ let deletingTaskId = null;
 
 let editingTaskId = null;
 
-// Application state
+searchInput.addEventListener("input", function () {
+  searchQuery = searchInput.value.trim();
+  renderTasks();
+});
+
+// Switch the active filter
+function setActiveFilter(filter) {
+  currentFilter = filter;
+
+  filterButtons.forEach((button) => {
+    const isActive = button.dataset.filter === filter;
+    button.classList.toggle("filter-btn--active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+
+  renderTasks();
+}
+
+filterButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    setActiveFilter(button.dataset.filter);
+  });
+});
 
 // Get today's date in YYYY-MM-DD format
 function getTodayDate() {
@@ -112,8 +134,23 @@ function saveTasks() {
   }
 }
 
+// Update the numbers on the filter buttons
+function updateFilterCounts() {
+  const counts = {
+    all: tasks.length,
+    active: tasks.filter((task) => !task.completed).length,
+    completed: tasks.filter((task) => task.completed).length,
+  };
+
+  filterButtons.forEach((button) => {
+    const countElement = button.querySelector(".filter-count");
+    countElement.textContent = counts[button.dataset.filter];
+  });
+}
+
 // Render tasks
 function renderTasks() {
+  updateFilterCounts();
   taskList.innerHTML = "";
 
   const filteredTasks = tasks.filter((task) => {
@@ -130,6 +167,10 @@ function renderTasks() {
   });
 
   emptyState.hidden = filteredTasks.length > 0;
+  emptyState.textContent =
+    tasks.length === 0
+      ? "No tasks yet. Add your first task!"
+      : "No tasks found.";
 
   filteredTasks.forEach((task) => {
     const li = document.createElement("li");

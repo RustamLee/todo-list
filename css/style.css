@@ -600,6 +600,15 @@ input:focus-visible {
   border-color: var(--color-primary);
 }
 
+.edit-form input[aria-invalid="true"] {
+  border-color: #c62828;
+}
+
+.edit-form button[type="submit"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .edit-form__actions {
   display: flex;
   justify-content: flex-end;
