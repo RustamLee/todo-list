@@ -1,61 +1,62 @@
-
 /* ==============================
    1. Global styles
 ================================= */
 
 :root {
-    --color-primary: #4f6df5;
-    --color-primary-hover: #3d59df;
-    --color-background: #f5f6fa;
-    --color-surface: #ffffff;
-    --color-text: #202438;
-    --color-secondary: #858b9c;
-    --color-border: #e8eaf0;
-    --color-danger: #e05252;
+  --color-primary: #4f6df5;
+  --color-primary-hover: #3d59df;
+  --color-background: #f5f6fa;
+  --color-surface: #ffffff;
+  --color-text: #202438;
+  --color-secondary: #858b9c;
+  --color-border: #e8eaf0;
+  --color-danger: #e05252;
 
-    --shadow-card: 0 4px 20px rgba(30, 40, 80, 0.04);
+  --shadow-card: 0 4px 20px rgba(30, 40, 80, 0.04);
 
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
 }
 
-
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    font-family: Inter, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
-    background-color: var(--color-background);
-    color: var(--color-text);
-    line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  line-height: 1.5;
 }
 
 button,
 input {
-    font: inherit;
+  font: inherit;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 .container {
-    width: min(100% - 40px, 800px);
-    margin: 0 auto;
+  width: min(100% - 40px, 800px);
+  margin: 0 auto;
 }
 
 /* ==============================
@@ -63,58 +64,60 @@ a {
 ================================= */
 
 .header {
-    background-color: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .header__container {
-    min-height: 76px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
 }
 
 .logo {
-    font-size: 22px;
-    font-weight: 750;
-    letter-spacing: -0.7px;
-    color: var(--color-primary);
+  font-size: 22px;
+  font-weight: 750;
+  letter-spacing: -0.7px;
+  color: var(--color-primary);
 }
 
 .filters {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .filter-btn {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 8px 13px;
-    border: none;
-    border-radius: var(--radius-sm);
-    background: transparent;
-    color: var(--color-secondary);
-    font-size: 14px;
-    font-weight: 500;
-    transition: background-color 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 13px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .filter-btn:hover {
-    background-color: #f1f3ff;
-    color: var(--color-primary);
+  background-color: #f1f3ff;
+  color: var(--color-primary);
 }
 
 .filter-btn--active {
-    background-color: #edf0ff;
-    color: var(--color-primary);
+  background-color: #edf0ff;
+  color: var(--color-primary);
 }
 
 .filter-count {
-    font-size: 12px;
-    font-weight: 600;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 /* ==============================
@@ -122,15 +125,15 @@ a {
 ================================= */
 
 .main {
-    flex: 1;
-    padding: 64px 0;
+  flex: 1;
+  padding: 64px 0;
 }
 
 .task-section h1 {
-    margin-bottom: 28px;
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: -0.8px;
+  margin-bottom: 28px;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
 }
 
 /* ==============================
@@ -138,31 +141,33 @@ a {
 ================================= */
 
 .search {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .search input {
-    width: 100%;
-    height: 48px;
-    padding: 0 16px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    outline: none;
-    background-color: var(--color-surface);
-    color: var(--color-text);
-    font-size: 14px;
-    transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  outline: none;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-size: 14px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .search input::placeholder,
 .task-form input::placeholder {
-    color: #a5aabb;
+  color: #a5aabb;
 }
 
 .search input:focus,
 .task-form input:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(79, 109, 245, 0.1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 109, 245, 0.1);
 }
 
 /* ==============================
@@ -170,72 +175,128 @@ a {
 ================================= */
 
 .task-form {
-    padding: 20px;
-    margin-bottom: 40px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    background-color: var(--color-surface);
-    box-shadow: var(--shadow-card);
+  padding: 20px;
+  margin-bottom: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-card);
 }
 
 .task-form > input[type="text"] {
-    width: 100%;
-    height: 48px;
-    padding: 0 14px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    outline: none;
-    font-size: 14px;
-    color: var(--color-text);
-    transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  font-size: 14px;
+  color: var(--color-text);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .task-form__actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 .due-date {
-    color: var(--color-secondary);
-    font-size: 13px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-secondary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.due-date:hover {
+  color: var(--color-primary);
+}
+
+.date-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.date-input-icon {
+  position: absolute;
+  right: 10px;
+  color: var(--color-secondary);
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.date-input-wrapper:hover .date-input-icon {
+  color: var(--color-primary);
 }
 
 .task-form input[type="date"] {
-    min-width: 145px;
-    padding: 8px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    background-color: var(--color-surface);
-    color: var(--color-secondary);
-    font-size: 12px;
-    outline: none;
+  min-width: 145px;
+  padding: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-secondary);
+  font-size: 12px;
+  outline: none;
+  padding-right: 34px;
 }
 
 .task-form input[type="date"]:focus {
-    border-color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
+.task-form input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
 .add-task-btn {
-    margin-left: auto;
-    padding: 11px 22px;
-    border: none;
-    border-radius: var(--radius-sm);
-    background-color: var(--color-primary);
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 600;
-    transition: background-color 0.2s, transform 0.2s;
+  margin-left: auto;
+  padding: 11px 22px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    background-color 0.2s,
+    transform 0.2s;
 }
 
 .add-task-btn:hover {
-    background-color: var(--color-primary-hover);
+  background-color: var(--color-primary-hover);
 }
 
 .add-task-btn:active {
-    transform: scale(0.98);
+  transform: scale(0.98);
+}
+
+.add-task-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-error {
+  min-height: 1.25rem;
+  margin: 0.25rem 0 0;
+  color: #c62828;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.task-form input[aria-invalid="true"] {
+  border-color: #c62828;
 }
 
 /* ==============================
@@ -243,25 +304,99 @@ a {
 ================================= */
 
 .task-list-section h2 {
-    margin-bottom: 16px;
-    font-size: 17px;
-    font-weight: 650;
+  margin-bottom: 16px;
+  font-size: 17px;
+  font-weight: 650;
 }
 
 .task-list {
-    list-style: none;
-    overflow: hidden;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    background-color: var(--color-surface);
-    box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  min-height: 64px;
+  padding: 18px 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.task-checkbox {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.task-item:hover {
+  box-shadow: 0 6px 24px rgba(30, 40, 80, 0.08);
+  transform: translateY(-1px);
+}
+
+.task-item__title--completed {
+  text-decoration: line-through;
+  color: var(--color-secondary);
+}
+
+.task-item__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.task-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-secondary);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.task-action-btn:hover {
+  color: var(--color-primary);
+}
+
+.task-action-btn--delete:hover {
+  color: var(--color-danger);
+}
+
+.task-item span {
+  font-size: 15px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.task-item__date {
+  margin-left: auto;
+  color: var(--color-secondary);
+  font-size: 13px;
+  white-space: nowrap;
 }
 
 .empty-state {
-    padding: 32px 16px;
-    color: var(--color-secondary);
-    font-size: 14px;
-    text-align: center;
+  padding: 32px 16px;
+  color: var(--color-secondary);
+  font-size: 14px;
+  text-align: center;
 }
 
 /* ==============================
@@ -269,26 +404,26 @@ a {
 ================================= */
 
 .footer {
-    background-color: var(--color-surface);
-    border-top: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
 }
 
 .footer__container {
-    min-height: 68px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 .footer p,
 .footer a {
-    color: var(--color-secondary);
-    font-size: 12px;
+  color: var(--color-secondary);
+  font-size: 12px;
 }
 
 .footer a:hover {
-    color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 /* ==============================
@@ -296,22 +431,22 @@ a {
 ================================= */
 
 .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 3px;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
 }
 
 /* ==============================
@@ -319,75 +454,192 @@ input:focus-visible {
 ================================= */
 
 @media (max-width: 767px) {
+  .container {
+    width: min(100% - 32px, 800px);
+  }
 
-    .container {
-        width: min(100% - 32px, 800px);
-    }
+  .header__container {
+    min-height: auto;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
 
-    .header__container {
-        min-height: auto;
-        padding-top: 16px;
-        padding-bottom: 16px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-    }
+  .filters {
+    width: 100%;
+    gap: 4px;
+  }
 
-    .filters {
-        width: 100%;
-        gap: 4px;
-    }
+  .filter-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 9px 5px;
+    font-size: 12px;
+  }
 
-    .filter-btn {
-        flex: 1;
-        justify-content: center;
-        padding: 9px 5px;
-        font-size: 12px;
-    }
+  .main {
+    padding: 36px 0;
+  }
 
-    .main {
-        padding: 36px 0;
-    }
+  .task-section h1 {
+    font-size: 25px;
+    margin-bottom: 22px;
+  }
 
-    .task-section h1 {
-        font-size: 25px;
-        margin-bottom: 22px;
-    }
+  .task-form {
+    padding: 16px;
+    margin-bottom: 32px;
+  }
 
-    .task-form {
-        padding: 16px;
-        margin-bottom: 32px;
-    }
+  .task-form__actions {
+    flex-wrap: wrap;
+  }
 
-    .task-form__actions {
-        flex-wrap: wrap;
-    }
+  .add-task-btn {
+    width: 100%;
+    margin-left: 0;
+  }
 
-    .add-task-btn {
-        width: 100%;
-        margin-left: 0;
-    }
-
-    .footer__container {
-        min-height: 64px;
-        flex-wrap: wrap;
-        padding-top: 12px;
-        padding-bottom: 12px;
-    }
+  .footer__container {
+    min-height: 64px;
+    flex-wrap: wrap;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
 }
 
 @media (max-width: 380px) {
+  .filter-btn {
+    gap: 4px;
+    font-size: 11px;
+  }
 
-    .filter-btn {
-        gap: 4px;
-        font-size: 11px;
-    }
+  .task-form__actions {
+    gap: 8px;
+  }
 
-    .task-form__actions {
-        gap: 8px;
-    }
+  .due-date {
+    font-size: 12px;
+  }
+}
 
-    .due-date {
-        font-size: 12px;
-    }
+.task-due-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 130px;
+  text-align: left;
+  white-space: nowrap;
+  padding: 6px 8px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-secondary);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.task-due-date:hover {
+  color: var(--color-primary);
+  background: var(--color-background);
+}
+
+/* ==============================
+   9. Edit dialog
+================================= */
+
+.edit-dialog {
+  width: min(100% - 40px, 440px);
+  margin: auto;
+  padding: 28px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 12px 40px rgba(30, 40, 80, 0.15);
+}
+
+.edit-dialog::backdrop {
+  background: rgba(32, 36, 56, 0.45);
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.edit-form h2 {
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+
+.edit-form label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.edit-form input {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  color: var(--color-text);
+  outline: none;
+}
+
+.edit-form input:focus {
+  border-color: var(--color-primary);
+}
+
+.edit-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.edit-form__actions button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#cancel-edit {
+  background: var(--color-surface-blue);
+  color: var(--color-text);
+}
+
+.edit-form__actions button[type="submit"] {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* ==============================
+   10. Delete dialog buttons
+================================= */
+
+#cancel-delete {
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+#confirm-delete {
+  background: var(--color-danger);
+  color: white;
+}
+
+#confirm-delete:hover {
+  background: #c94343;
 }

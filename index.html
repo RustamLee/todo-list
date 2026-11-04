@@ -1,130 +1,155 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A simple and responsive task management application.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A simple and responsive task management application."
+    />
     <title>Task Tracker — To-Do List</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
     <script src="js/app.js" defer></script>
-</head>
-<body>
-
+  </head>
+  <body>
     <header class="header">
-        <div class="container header__container">
+      <div class="container header__container">
+        <a href="#" class="logo">Task Tracker</a>
 
-            <a href="#" class="logo">Task Tracker</a>
+        <nav class="filters" aria-label="Task filters">
+          <button
+            class="filter-btn filter-btn--active"
+            data-filter="all"
+            type="button"
+          >
+            All <span class="filter-count">0</span>
+          </button>
 
-            <nav class="filters" aria-label="Task filters">
-                <button class="filter-btn filter-btn--active"
-                        data-filter="all"
-                        type="button">
-                    All <span class="filter-count">0</span>
-                </button>
+          <button class="filter-btn" data-filter="active" type="button">
+            Active <span class="filter-count">0</span>
+          </button>
 
-                <button class="filter-btn"
-                        data-filter="active"
-                        type="button">
-                    Active <span class="filter-count">0</span>
-                </button>
-
-                <button class="filter-btn"
-                        data-filter="completed"
-                        type="button">
-                    Completed <span class="filter-count">0</span>
-                </button>
-            </nav>
-
-        </div>
+          <button class="filter-btn" data-filter="completed" type="button">
+            Completed <span class="filter-count">0</span>
+          </button>
+        </nav>
+      </div>
     </header>
 
     <main class="main">
-        <div class="container main__container">
+      <div class="container main__container">
+        <section class="task-section" aria-labelledby="tasks-title">
+          <h1 id="tasks-title">My Tasks</h1>
 
-            <section class="task-section" aria-labelledby="tasks-title">
+          <div class="search">
+            <label for="task-search" class="visually-hidden">
+              Search tasks
+            </label>
+            <input
+              type="search"
+              id="task-search"
+              placeholder="Search tasks..."
+            />
+          </div>
 
-                <h1 id="tasks-title">My Tasks</h1>
+          <form class="task-form" id="task-form" novalidate>
+            <label for="task-title" class="visually-hidden">
+              New task title
+            </label>
 
-                <div class="search">
-                    <label for="task-search" class="visually-hidden">
-                        Search tasks
-                    </label>
-                    <input
-                        type="search"
-                        id="task-search"
-                        placeholder="Search tasks..."
-                    >
-                </div>
+            <input
+              type="text"
+              id="task-title"
+              name="title"
+              placeholder="What needs to be done?"
+              required
+              maxlength="100"
+              aria-describedby="task-error"
+            />
+            <p class="form-error" id="task-error" role="alert"></p>
 
-                <form class="task-form" id="task-form">
+            <div class="task-form__actions">
+              <label for="task-due-date" class="due-date">
+                <span>Set due date</span>
+              </label>
 
-                    <label for="task-title" class="visually-hidden">
-                        New task title
-                    </label>
+              <div class="date-input-wrapper">
+                <input type="date" id="task-due-date" name="dueDate" />
 
-                    <input
-                        type="text"
-                        id="task-title"
-                        name="title"
-                        placeholder="What needs to be done?"
-                        required
-                        maxlength="200"
-                    >
+                <svg
+                  class="date-input-icon"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+              </div>
 
-                    <div class="task-form__actions">
+              <button type="submit" class="add-task-btn">Add Task</button>
+            </div>
+          </form>
 
-                        <label for="task-due-date" class="due-date">
-                            <span>Set due date</span>
-                        </label>
+          <section class="task-list-section" aria-labelledby="task-list-title">
+            <h2 id="task-list-title">Tasks</h2>
 
-                        <input
-                            type="date"
-                            id="task-due-date"
-                            name="dueDate"
-                        >
+            <ul class="task-list" id="task-list">
+              <!-- Tasks will be rendered here by JavaScript -->
+            </ul>
 
-                        <button type="submit" class="add-task-btn">
-                            Add Task
-                        </button>
+            <p class="empty-state" id="empty-state">
+              No tasks yet. Add your first task!
+            </p>
+          </section>
+        </section>
+      </div>
 
-                    </div>
+      <dialog class="edit-dialog" id="edit-dialog">
+        <form class="edit-form" id="edit-form">
+          <h2>Edit task</h2>
 
-                </form>
+          <label for="edit-task-title">Task name</label>
+          <input type="text" id="edit-task-title" maxlength="100" required />
 
-                <section class="task-list-section"
-                         aria-labelledby="task-list-title">
+          <label for="edit-due-date">Due date</label>
+          <input type="date" id="edit-due-date" />
 
-                    <h2 id="task-list-title">Tasks</h2>
+          <div class="edit-form__actions">
+            <button type="button" id="cancel-edit">Cancel</button>
+            <button type="submit">Save changes</button>
+          </div>
+        </form>
+      </dialog>
+      <dialog class="edit-dialog" id="delete-dialog">
+        <div class="edit-form">
+          <h2>Delete task</h2>
 
-                    <ul class="task-list" id="task-list">
-                        <!-- Tasks will be rendered here by JavaScript -->
-                    </ul>
+          <p>Are you sure you want to delete this task?</p>
 
-                    <p class="empty-state" id="empty-state">
-                        No tasks yet. Add your first task!
-                    </p>
-
-                </section>
-
-            </section>
-
+          <div class="edit-form__actions">
+            <button type="button" id="cancel-delete">Cancel</button>
+            <button type="button" id="confirm-delete">Delete</button>
+          </div>
         </div>
+      </dialog>
     </main>
 
     <footer class="footer">
-        <div class="container footer__container">
+      <div class="container footer__container">
+        <p>&copy; 2026 TaskFlow. All rights reserved.</p>
 
-            <p>&copy; 2026 TaskFlow. All rights reserved.</p>
-
-            <a href="https://github.com/"
-               target="_blank"
-               rel="noopener noreferrer">
-                GitHub
-            </a>
-
-        </div>
+        <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+      </div>
     </footer>
-
-</body>
+  </body>
 </html>
