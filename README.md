@@ -4,6 +4,8 @@ A simple, responsive task management web application built with HTML, CSS, and V
 
 The project is developed as a practical web development assignment, focusing on core functionality, clean UI, form validation, responsive design, and browser-based data persistence.
 
+**Live demo:** https://rustamlee.github.io/todo-list/
+
 ## Features
 
 ### Task Management
